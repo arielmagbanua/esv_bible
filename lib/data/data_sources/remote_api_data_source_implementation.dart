@@ -1,18 +1,23 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:esv_bible/data/data_sources/remote_api_data_source.dart';
 
 class RemoteAPIDataSourceImplementation extends RemoteAPIDataSource {
-  RemoteAPIDataSourceImplementation({required http.Client client})
-      : super(client: client);
+  final String apiKey;
+
+  RemoteAPIDataSourceImplementation({
+    required http.Client httpClient,
+    required this.apiKey,
+  }) : super(httpClient: httpClient);
 
   @override
-  Future<String?> getPassageText(String queryPassage) async {
+  Future<List<String>?> getPassageText(String queryPassage) async {
     final responseData = await rawPassageText(queryPassage);
 
     if (responseData != null) {
-      return responseData['passages'];
+      return (responseData['passages'] as List<dynamic>)
+          .map((item) => item as String)
+          .toList();
     }
 
     return null;
@@ -20,9 +25,10 @@ class RemoteAPIDataSourceImplementation extends RemoteAPIDataSource {
 
   @override
   Future<Map<dynamic, dynamic>?> rawPassageText(String queryPassage) async {
-    final response = await sendRequest(method: 'GET', url: RemoteAPIDataSource.passageEndpoint, customHeaders: {
-      'Authorization': 'Token TOKEN_HERE'
-    });
+    final response = await sendRequest(
+        method: 'GET',
+        url: RemoteAPIDataSource.passageEndpoint,
+        customHeaders: {'Authorization': 'Token $apiKey'});
 
     final responseData = json.decode(response.body);
 

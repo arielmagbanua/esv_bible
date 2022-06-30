@@ -5,10 +5,10 @@ import 'package:http/http.dart' as http;
 /// The base RESTful data source client class.
 abstract class RestfulDataSource {
   /// The http client
-  final http.Client client;
+  final http.Client httpClient;
 
   const RestfulDataSource({
-    required this.client,
+    required this.httpClient,
   });
 
   /// The default headers for every request.
@@ -38,21 +38,21 @@ abstract class RestfulDataSource {
 
     switch (method.toUpperCase()) {
       case 'POST':
-        return client.post(
+        return httpClient.post(
           Uri.parse(url),
           headers: headers,
           body: body,
         );
 
       case 'PUT':
-        return client.put(
+        return httpClient.put(
           Uri.parse(url),
           headers: headers,
           body: body,
         );
 
       default:
-        return client.get(
+        return httpClient.get(
           Uri.parse(url),
           headers: headers,
         );
