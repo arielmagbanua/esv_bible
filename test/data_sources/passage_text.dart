@@ -1,12 +1,7 @@
+import 'package:esv_bible/data/data_sources/passage_text.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:http/http.dart' as http;
-import 'package:esv_bible/data/data_sources/remote_api_data_source_implementation.dart';
-import 'package:esv_bible/data/data_sources/remote_api_data_source.dart';
-
-class MockHttpClient extends Mock implements http.Client {}
-
-class MockResponse extends Mock implements http.Response {}
 
 const samplePassageText = '''
 {
@@ -47,6 +42,10 @@ const samplePassageText = '''
 }
 ''';
 
+class MockHttpClient extends Mock implements http.Client {}
+
+class MockResponse extends Mock implements http.Response {}
+
 void main() {
   late MockHttpClient mockedHttpClient;
 
@@ -54,8 +53,10 @@ void main() {
     mockedHttpClient = MockHttpClient();
   });
 
-  test('Test getting of passage text', () async {
-    final correctUri = Uri.parse(RemoteAPIDataSource.passageEndpoint);
+  test('Test getting of text passage.', () async {
+    final correctUri = Uri.parse(
+      'https://api.esv.org/v3/passage/text?q=John+11%3A35',
+    );
 
     final response = MockResponse();
 
@@ -70,18 +71,20 @@ void main() {
       (_) => Future<http.Response>.value(response),
     );
 
-    final remoteAPIDataSource = RemoteAPIDataSourceImplementation(
-      apiKey: 'TEST',
+    final passageText = PassageText(
       httpClient: mockedHttpClient,
+      apiKey: 'TEST',
     );
 
-    final passage = await remoteAPIDataSource.getPassageText('John 11:35');
+    final passageData = await passageText('John 11:35', headers: headers);
 
-    expect(passage, isNotNull);
-    expect(passage!.length, 1);
-
-    final test = passage[0];
-
-    expect(test, 'John 11:35\n\n  [35] Jesus wept. (ESV)');
+    expect(passageData, isNotNull);
+    expect(passageData!['query'], 'John 11:35');
+    expect(passageData['canonical'], 'John 11:35');
+    expect((passageData['passages'] as List<dynamic>).length, 1);
+    expect(
+      (passageData['passages'] as List<dynamic>)[0],
+      'John 11:35\n\n  [35] Jesus wept. (ESV)',
+    );
   });
 }
