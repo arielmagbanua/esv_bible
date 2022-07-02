@@ -76,7 +76,7 @@ void main() {
       apiKey: 'TEST',
     );
 
-    final passageData = await passageText('John 11:35', headers: headers);
+    final passageData = await passageText('John 11:35');
 
     expect(passageData, isNotNull);
     expect(passageData!['query'], 'John 11:35');
