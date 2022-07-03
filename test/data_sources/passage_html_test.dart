@@ -1,9 +1,9 @@
-import 'package:esv_bible/data/data_sources/passage_text.dart';
+import 'package:esv_bible/data/data_sources/passage_html.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:http/http.dart' as http;
 
-const samplePassageText = '''
+const samplePassageHTML = '''
 {
   "query": "John 11:35",
   "canonical": "John 11:35",
@@ -37,7 +37,7 @@ const samplePassageText = '''
     }
   ],
   "passages": [
-    "John 11:35\\n\\n  [35] Jesus wept. (ESV)"
+    "<h2 class=\\"extra_text\\">John 11:35 <small class=\\"audio extra_text\\">(<a class=\\"mp3link\\" href=\\"https://audio.esv.org/hw/43011035-43011035.mp3\\" title=\\"John 11:35\\" type=\\"audio/mpeg\\">Listen</a>)</small></h2>\\n<p id=\\"p43011035_01-1\\" class=\\"virtual\\"><b class=\\"verse-num\\" id=\\"v43011035-1\\">35 </b>Jesus wept.</p>\\n<p>(<a href=\\"http://www.esv.org\\" class=\\"copyright\\">ESV</a>)</p>"
   ]
 }
 ''';
@@ -46,16 +46,16 @@ class MockHttpClient extends Mock implements http.Client {}
 
 class MockResponse extends Mock implements http.Response {}
 
-void main() {
+void main () {
   late MockHttpClient mockedHttpClient;
 
   setUp(() {
     mockedHttpClient = MockHttpClient();
   });
 
-  test('Test getting of text passage.', () async {
+  test('Test getting of html passage.', () async {
     final correctUri = Uri.parse(
-      'https://api.esv.org/v3/passage/text?q=John+11%3A35',
+      'https://api.esv.org/v3/passage/html?q=John+11%3A35',
     );
 
     final response = MockResponse();
@@ -66,17 +66,17 @@ void main() {
     };
 
     when(() => response.statusCode).thenReturn(200);
-    when(() => response.body).thenReturn(samplePassageText);
+    when(() => response.body).thenReturn(samplePassageHTML);
     when(() => mockedHttpClient.get(correctUri, headers: headers)).thenAnswer(
-      (_) => Future<http.Response>.value(response),
+          (_) => Future<http.Response>.value(response),
     );
 
-    final passageText = PassageText(
+    final passageHtml = PassageHtml(
       httpClient: mockedHttpClient,
       apiKey: 'TEST',
     );
 
-    final passageData = await passageText('John 11:35', headers: headers);
+    final passageData = await passageHtml('John 11:35');
 
     expect(passageData, isNotNull);
     expect(passageData!['query'], 'John 11:35');
@@ -84,7 +84,7 @@ void main() {
     expect((passageData['passages'] as List<dynamic>).length, 1);
     expect(
       (passageData['passages'] as List<dynamic>)[0],
-      'John 11:35\n\n  [35] Jesus wept. (ESV)',
+      '<h2 class="extra_text">John 11:35 <small class="audio extra_text">(<a class="mp3link" href="https://audio.esv.org/hw/43011035-43011035.mp3" title="John 11:35" type="audio/mpeg">Listen</a>)</small></h2>\n<p id="p43011035_01-1" class="virtual"><b class="verse-num" id="v43011035-1">35 </b>Jesus wept.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
     );
   });
 }

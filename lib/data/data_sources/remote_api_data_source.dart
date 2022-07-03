@@ -36,24 +36,32 @@ abstract class RemoteAPIDataSource extends RestfulDataSource {
   ///
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
-  Future<Map<String, dynamic>?>query({
+  Future<Map<String, dynamic>?> query({
     String? query,
     Map<String, String>? params,
     Map<String, String>? headers,
   }) async {
-    params = params ?? (params = {});
+    params = params ?? {};
+    headers = headers ?? {};
 
     if (query != null) {
       // add the query as part of params
       params['q'] = query;
     }
 
-    String queryString = params.isNotEmpty ? Uri(queryParameters: params).query : '';
+    // set the authorization header
+    headers['Authorization'] = 'Token $apiKey';
+    // set the content type header
+    headers['Content-Type'] = 'application/json';
+
+    String queryString =
+        params.isNotEmpty ? Uri(queryParameters: params).query : '';
 
     final response = await sendRequest(
-        method: 'GET',
-        url: '$url?$queryString',
-        customHeaders: {'Authorization': 'Token $apiKey'});
+      method: 'GET',
+      url: '$url?$queryString',
+      customHeaders: headers,
+    );
 
     final responseData = json.decode(response.body);
 
@@ -73,5 +81,7 @@ abstract class RemoteAPIDataSource extends RestfulDataSource {
     String queryPassage, {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
-  });
+  }) async {
+    return await query(query: queryPassage);
+  }
 }
