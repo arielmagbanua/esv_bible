@@ -1,9 +1,9 @@
-import 'package:esv_bible/data/data_sources/remote_api_data_source.dart';
+import 'package:esv_bible/data/data_sources/esv_api_data_source.dart';
 
 /// PassageText
 ///
 /// The passage text data source.
-class PassageSearch extends RemoteAPIDataSource {
+class PassageSearch extends EsvRemoteAPIDataSource {
   @override
   String get url => 'https://api.esv.org/v3/passage/search';
 

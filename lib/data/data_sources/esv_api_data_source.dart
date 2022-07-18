@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 /// RemoteAPIDataSource
 ///
 /// The base Remote API Data Source class.
-abstract class RemoteAPIDataSource extends RestfulDataSource {
+abstract class EsvRemoteAPIDataSource extends RestfulDataSource {
   final String apiKey;
 
   /// The url of the data source
@@ -15,7 +15,7 @@ abstract class RemoteAPIDataSource extends RestfulDataSource {
   ///
   /// The [httpClient] is the instance of http client for executing http requests.
   /// The [apiKey] is the API Key for each request.
-  const RemoteAPIDataSource({
+  const EsvRemoteAPIDataSource({
     required http.Client httpClient,
     required this.apiKey,
   }) : super(httpClient: httpClient);
