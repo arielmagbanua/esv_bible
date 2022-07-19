@@ -8,8 +8,8 @@ import 'package:http/http.dart' as http;
 abstract class EsvRemoteAPIDataSource extends RestfulDataSource {
   final String apiKey;
 
-  /// The url of the data source
-  String get url;
+  static const baseEndpoint = 'https://api.esv.org';
+  static const apiVersion = 'v3';
 
   /// Constructor
   ///
@@ -37,6 +37,7 @@ abstract class EsvRemoteAPIDataSource extends RestfulDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> query({
+    required String endpoint,
     String? query,
     Map<String, String>? params,
     Map<String, String>? headers,
@@ -57,6 +58,8 @@ abstract class EsvRemoteAPIDataSource extends RestfulDataSource {
     String queryString =
         params.isNotEmpty ? Uri(queryParameters: params).query : '';
 
+    String url = '$baseEndpoint/$apiVersion/$endpoint';
+
     final response = await sendRequest(
       method: 'GET',
       url: '$url?$queryString',
@@ -72,16 +75,57 @@ abstract class EsvRemoteAPIDataSource extends RestfulDataSource {
     return null;
   }
 
-  /// This enables the object to be callable.
+  /// Get passage html
+  ///
+  /// https://api.esv.org/docs/passage-html/
   ///
   /// The [queryPassage] is the requested passage.
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
-  Future<Map<String, dynamic>?> call(
+  Future<Map<String, dynamic>?> getPassageHtml(
     String queryPassage, {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
-    return await query(query: queryPassage);
+    return await query(
+      endpoint: 'passage/html',
+      query: queryPassage,
+    );
+  }
+
+  /// Get passage text
+  ///
+  /// https://api.esv.org/docs/passage-text/
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
+  Future<Map<String, dynamic>?> getPassageText(
+      String queryPassage, {
+        Map<String, dynamic>? params,
+        Map<String, dynamic>? headers,
+      }) async {
+    return await query(
+      endpoint: 'passage/text',
+      query: queryPassage,
+    );
+  }
+
+  /// Get passage search
+  ///
+  /// https://api.esv.org/docs/passage-search/
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
+  Future<Map<String, dynamic>?> getPassageSearch(
+      String queryPassage, {
+        Map<String, dynamic>? params,
+        Map<String, dynamic>? headers,
+      }) async {
+    return await query(
+      endpoint: 'passage/search',
+      query: queryPassage,
+    );
   }
 }
