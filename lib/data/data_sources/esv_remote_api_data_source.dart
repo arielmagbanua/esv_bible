@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 /// RemoteAPIDataSource
 ///
 /// The base Remote API Data Source class.
-abstract class EsvRemoteAPIDataSource extends RestfulDataSource {
+class EsvRemoteAPIDataSource extends RestfulDataSource {
   final String apiKey;
 
   static const baseEndpoint = 'https://api.esv.org';
