@@ -6,16 +6,26 @@ class PassageHtml extends entities.PassageHtml {
     required super.canonical,
     required super.parsed,
     required super.passageMeta,
-    required super.messages,
+    required super.passages,
   });
 
   factory PassageHtml.fromJson(Map<String, dynamic> json) {
+    final parsed = List<List<dynamic>?>.from(
+      json['parsed'],
+    ).toList();
+    final passageMeta = List<Map<String, dynamic>?>.from(
+      json['passage_meta'],
+    ).toList();
+    final passages = List<String>.from(
+      json['passages'],
+    ).toList();
+
     return PassageHtml(
       query: json['query'] ?? '',
       canonical: json['canonical'] ?? '',
-      parsed: json['parsed'] ?? [],
-      passageMeta: json['passage_meta'] ?? [],
-      messages: json['messages'] ?? [],
+      parsed: parsed,
+      passageMeta: passageMeta,
+      passages: passages,
     );
   }
 }

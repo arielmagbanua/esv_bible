@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class PassageSearch extends Equatable {
   final int page;
   final int totalResults;
-  final List<Map<String, dynamic>> results;
+  final List<Map<String, dynamic>?> results;
   final int totalPages;
 
   const PassageSearch({
@@ -15,9 +15,9 @@ class PassageSearch extends Equatable {
 
   @override
   List<Object?> get props => [
-    page,
-    totalResults,
-    results,
-    totalPages,
-  ];
+        page,
+        totalResults,
+        results,
+        totalPages,
+      ];
 }

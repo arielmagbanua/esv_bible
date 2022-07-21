@@ -3,24 +3,24 @@ import 'package:equatable/equatable.dart';
 class PassageHtml extends Equatable {
   final String query;
   final String canonical;
-  final List<List<int>> parsed;
-  final List<Map<String, dynamic>> passageMeta;
-  final List<String> messages;
+  final List<List<dynamic>?> parsed;
+  final List<Map<String, dynamic>?> passageMeta;
+  final List<String> passages;
 
   const PassageHtml({
     required this.query,
     required this.canonical,
     required this.parsed,
     required this.passageMeta,
-    required this.messages,
+    required this.passages,
   });
 
   @override
   List<Object?> get props => [
-    query,
-    canonical,
-    parsed,
-    passageMeta,
-    messages,
-  ];
+        query,
+        canonical,
+        parsed,
+        passageMeta,
+        passages,
+      ];
 }

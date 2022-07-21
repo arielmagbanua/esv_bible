@@ -9,10 +9,14 @@ class PassageSearch extends entities.PassageSearch {
   });
 
   factory PassageSearch.fromJson(Map<String, dynamic> json) {
+    final results = List<Map<String, dynamic>?>.from(
+      json['results'],
+    ).toList();
+
     return PassageSearch(
       page: json['page'] ?? -1,
       totalResults: json['total_results'] ?? -1,
-      results: json['results'] ?? [],
+      results: results,
       totalPages: json['total_pages'] ?? -1,
     );
   }
