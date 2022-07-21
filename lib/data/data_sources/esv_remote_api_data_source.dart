@@ -36,7 +36,7 @@ class EsvRemoteAPIDataSource extends RestfulDataSource {
   ///
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
-  Future<Map<String, dynamic>?> query({
+  Future<Map<String, dynamic>?> _query({
     required String endpoint,
     String? query,
     Map<String, String>? params,
@@ -87,7 +87,7 @@ class EsvRemoteAPIDataSource extends RestfulDataSource {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
-    return await query(
+    return await _query(
       endpoint: 'passage/html',
       query: queryPassage,
     );
@@ -105,7 +105,7 @@ class EsvRemoteAPIDataSource extends RestfulDataSource {
         Map<String, dynamic>? params,
         Map<String, dynamic>? headers,
       }) async {
-    return await query(
+    return await _query(
       endpoint: 'passage/text',
       query: queryPassage,
     );
@@ -123,7 +123,7 @@ class EsvRemoteAPIDataSource extends RestfulDataSource {
         Map<String, dynamic>? params,
         Map<String, dynamic>? headers,
       }) async {
-    return await query(
+    return await _query(
       endpoint: 'passage/search',
       query: queryPassage,
     );
