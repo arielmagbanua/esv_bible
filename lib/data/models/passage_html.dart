@@ -1,9 +1,7 @@
+import '../../domain/entities/passage_html.dart' as entities;
 
-
-import '../../domain/entities/passage_html.dart';
-
-class PassageHtmlModel extends PassageHtml {
-  const PassageHtmlModel({
+class PassageHtml extends entities.PassageHtml {
+  const PassageHtml({
     required super.query,
     required super.canonical,
     required super.parsed,
@@ -11,8 +9,8 @@ class PassageHtmlModel extends PassageHtml {
     required super.messages,
   });
 
-  factory PassageHtmlModel.fromJson(Map<String, dynamic> json) {
-    return PassageHtmlModel(
+  factory PassageHtml.fromJson(Map<String, dynamic> json) {
+    return PassageHtml(
       query: json['query'] ?? '',
       canonical: json['canonical'] ?? '',
       parsed: json['parsed'] ?? [],

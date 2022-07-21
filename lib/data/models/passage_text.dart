@@ -1,7 +1,7 @@
-import '../../domain/entities/passage_text.dart' as entity;
+import '../../domain/entities/passage_text.dart' as entities;
 
-class PassageTextModel extends entity.PassageText {
-  const PassageTextModel({
+class PassageText extends entities.PassageText {
+  const PassageText({
     required super.query,
     required super.canonical,
     required super.parsed,
@@ -9,8 +9,8 @@ class PassageTextModel extends entity.PassageText {
     required super.messages,
   });
 
-  factory PassageTextModel.fromJson(Map<String, dynamic> json) {
-    return PassageTextModel(
+  factory PassageText.fromJson(Map<String, dynamic> json) {
+    return PassageText(
       query: json['query'] ?? '',
       canonical: json['canonical'] ?? '',
       parsed: json['parsed'] ?? [],
