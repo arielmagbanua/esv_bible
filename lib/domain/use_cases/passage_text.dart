@@ -7,6 +7,11 @@ class GetPassageText extends GetPassage {
 
   GetPassageText(this.esvBibleRepository);
 
+  /// This enables any instance of this class to be callable.
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
   @override
   Future<PassageText> call(
     String queryPassage, {

@@ -8,6 +8,9 @@ import 'domain/use_cases/passage_search.dart';
 abstract class GetPassage {
   const GetPassage();
 
+  /// The factory method for creating PassageText instance.
+  ///
+  /// The [key] is the esv API key.
   factory GetPassage.text(String key) {
     final dataSource = EsvRemoteDataSourceImplementation(
       httpClient: http.Client(),
@@ -18,6 +21,9 @@ abstract class GetPassage {
     return GetPassageText(esvBibleRepository);
   }
 
+  /// The factory method for creating PassageHtml instance.
+  ///
+  /// The [key] is the esv API key.
   factory GetPassage.html(String key) {
     final dataSource = EsvRemoteDataSourceImplementation(
       httpClient: http.Client(),
@@ -28,6 +34,9 @@ abstract class GetPassage {
     return GetPassageHtml(esvBibleRepository);
   }
 
+  /// The factory method for creating PassageSearch instance.
+  ///
+  /// The [key] is the esv API key.
   factory GetPassage.search(String key) {
     final dataSource = EsvRemoteDataSourceImplementation(
       httpClient: http.Client(),
@@ -38,6 +47,11 @@ abstract class GetPassage {
     return GetPassageSearch(esvBibleRepository);
   }
 
+  /// This enables any instance of this class to be callable.
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
   Future<dynamic> call(
     String queryPassage, {
     Map<String, dynamic>? params,
