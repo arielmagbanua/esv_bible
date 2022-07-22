@@ -5,7 +5,7 @@ import '../../get_passage.dart';
 class GetPassageHtml extends GetPassage {
   final EsvBibleRepository esvBibleRepository;
 
-  GetPassageHtml(this.esvBibleRepository);
+  const GetPassageHtml(this.esvBibleRepository);
 
   /// This enables any instance of this class to be callable.
   ///
