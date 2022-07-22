@@ -1,11 +1,54 @@
 import 'dart:convert';
-import 'package:esv_bible/data/data_sources/restful_data_source.dart';
+import 'restful_data_source.dart';
 import 'package:http/http.dart' as http;
+
+abstract class EsvRemoteDataSource extends RestfulDataSource {
+  const EsvRemoteDataSource({required super.httpClient});
+
+  /// Get passage html
+  ///
+  /// https://api.esv.org/docs/passage-html/
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
+  Future<Map<String, dynamic>?> getPassageHtml(
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  });
+
+  /// Get passage text
+  ///
+  /// https://api.esv.org/docs/passage-text/
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
+  Future<Map<String, dynamic>?> getPassageText(
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  });
+
+  /// Get passage search
+  ///
+  /// https://api.esv.org/docs/passage-search/
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
+  Future<Map<String, dynamic>?> getPassageSearch(
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  });
+}
 
 /// RemoteAPIDataSource
 ///
 /// The base Remote API Data Source class.
-class EsvRemoteAPIDataSource extends RestfulDataSource {
+class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   final String apiKey;
 
   static const baseEndpoint = 'https://api.esv.org';
@@ -15,7 +58,7 @@ class EsvRemoteAPIDataSource extends RestfulDataSource {
   ///
   /// The [httpClient] is the instance of http client for executing http requests.
   /// The [apiKey] is the API Key for each request.
-  const EsvRemoteAPIDataSource({
+  const EsvRemoteDataSourceImplementation({
     required http.Client httpClient,
     required this.apiKey,
   }) : super(httpClient: httpClient);
@@ -101,10 +144,10 @@ class EsvRemoteAPIDataSource extends RestfulDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageText(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return await _query(
       endpoint: 'passage/text',
       query: queryPassage,
@@ -119,10 +162,10 @@ class EsvRemoteAPIDataSource extends RestfulDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageSearch(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return await _query(
       endpoint: 'passage/search',
       query: queryPassage,

@@ -8,8 +8,8 @@ import '../models/passage_search.dart';
 ///
 /// It is responsible for abstracting the underlying implementation
 /// of getting bible passages from ESV API.
-class EsvBibleRepository extends contracts.EsvBibleRepository {
-  final EsvRemoteAPIDataSource esvRemoteDataSource;
+class EsvBibleRepository implements contracts.EsvBibleRepository {
+  final EsvRemoteDataSource esvRemoteDataSource;
 
   EsvBibleRepository(this.esvRemoteDataSource);
 
@@ -68,7 +68,7 @@ class EsvBibleRepository extends contracts.EsvBibleRepository {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
-    final data = await esvRemoteDataSource.getPassageSearch(
+    final data = await esvRemoteDataSource.getPassageText(
       queryPassage,
       params: params,
       headers: headers,

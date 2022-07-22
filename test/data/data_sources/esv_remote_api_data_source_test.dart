@@ -2,7 +2,6 @@ import 'package:esv_bible/data/data_sources/esv_remote_api_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:http/http.dart' as http;
-
 import '../../test_data.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
@@ -34,7 +33,7 @@ void main () {
           (_) => Future<http.Response>.value(mockResponse),
     );
 
-    final remoteDataSource = EsvRemoteAPIDataSource(
+    final remoteDataSource = EsvRemoteDataSourceImplementation(
       httpClient: mockedHttpClient,
       apiKey: 'TEST',
     );
@@ -67,7 +66,7 @@ void main () {
           (_) => Future<http.Response>.value(mockResponse),
     );
 
-    final remoteDataSource = EsvRemoteAPIDataSource(
+    final remoteDataSource = EsvRemoteDataSourceImplementation(
       httpClient: mockedHttpClient,
       apiKey: 'TEST',
     );
@@ -102,7 +101,7 @@ void main () {
           (_) => Future<http.Response>.value(mockResponse),
     );
 
-    final remoteDataSource = EsvRemoteAPIDataSource(
+    final remoteDataSource = EsvRemoteDataSourceImplementation(
       httpClient: mockedHttpClient,
       apiKey: 'TEST',
     );
