@@ -1,6 +1,6 @@
 import '../entities/passage_text.dart';
 import '../repositories/esv_bible_repository.dart';
-import '../../esv_bible.dart';
+import '../../get_passage.dart';
 
 class GetPassageText extends GetPassage {
   final EsvBibleRepository esvBibleRepository;
