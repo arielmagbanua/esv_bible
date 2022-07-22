@@ -5,6 +5,10 @@ import 'domain/use_cases/passage_text.dart';
 import 'domain/use_cases/passage_html.dart';
 import 'domain/use_cases/passage_search.dart';
 
+/// GetPassage
+///
+/// The base use case class or the use case factory class
+/// for different passages.
 abstract class GetPassage {
   const GetPassage();
 

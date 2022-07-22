@@ -2,6 +2,9 @@ import '../entities/passage_search.dart';
 import '../repositories/esv_bible_repository.dart';
 import '../../get_passage.dart';
 
+/// GetPassageSearch
+///
+/// The use case class for PassageSearch
 class GetPassageSearch extends GetPassage {
   final EsvBibleRepository esvBibleRepository;
 

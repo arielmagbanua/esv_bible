@@ -2,6 +2,9 @@ import '../entities/passage_html.dart';
 import '../repositories/esv_bible_repository.dart';
 import '../../get_passage.dart';
 
+/// GetPassageHtml
+///
+/// The use case class for PassageHtml
 class GetPassageHtml extends GetPassage {
   final EsvBibleRepository esvBibleRepository;
 
