@@ -1,7 +1,3 @@
 library esv_bible;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'get_passage.dart';
