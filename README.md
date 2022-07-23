@@ -1,41 +1,48 @@
-# esv_bible
+# ESV API Bible for Dart
 
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+A future based dart package for the [ESV API](https://api.esv.org/) from [Crossway](https://www.crossway.org/)
+which can be used to fetch ESV bible passages.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This package requires an API key to fetch bible passages. You can secure an API key by creating a new application on the [ESV API website](https://api.esv.org/).
 
 ## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* Get [passage text](https://api.esv.org/docs/passage-text/) from ESV Bible API.
+* Get [passage html](https://api.esv.org/docs/passage-html/) from ESV Bible API.
+* [Search a passage](https://api.esv.org/docs/passage-search/) from ESV Bible API.
+* [Download a mp3 audio](https://api.esv.org/docs/passage-audio/) of a bible passage. (in development)
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+* Secure your API key at the [ESV API website](https://api.esv.org/).
+* Import the package.
+* To fetch a passage you can use the factory class `GetPassage` to create the passage use case (`PassageHtml`, `PassageText`, `PassageSearch`).
+* The use case classes are callable, so calling them will execute an API request and automatically parse and then converts the data to an object.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+Basic passage text query:
 ```dart
-const like = 'sample';
+import 'package:esv_bible/get_passage.dart';
+
+void main () async {
+  const apiKey = 'your-api-key';
+
+  final passage = GetPassage.text(apiKey);
+  final passageText = await passage('John 3:16');
+  print(passageText.passages[0]);
+}
 ```
 
-## Additional information
+Output:
+```
+John 3:16
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+For God So Loved the World
+
+  [16] “For God so loved the world,(1) that he gave his only Son, that whoever believes in him should not perish but have eternal life.
+
+Footnotes
+
+(1) 3:16 Or *For this is how God loved the world*
+ (ESV)
+```
