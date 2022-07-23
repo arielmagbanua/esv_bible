@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 
+/// PassageHtml
+///
+/// The entity class for PassageHtml data response.
 class PassageHtml extends Equatable {
   final String query;
   final String canonical;

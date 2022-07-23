@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'restful_data_source.dart';
 import 'package:http/http.dart' as http;
 
+/// EsvRemoteDataSource
+///
+/// The abstraction for ESV API API resources.
 abstract class EsvRemoteDataSource extends RestfulDataSource {
   const EsvRemoteDataSource({required super.httpClient});
 
@@ -47,7 +50,7 @@ abstract class EsvRemoteDataSource extends RestfulDataSource {
 
 /// RemoteAPIDataSource
 ///
-/// The base Remote API Data Source class.
+/// The base Remote API Data Source implementation class.
 class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   final String apiKey;
 

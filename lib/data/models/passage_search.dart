@@ -1,5 +1,8 @@
 import '../../domain/entities/passage_search.dart' as entities;
 
+/// PassageSearch
+///
+/// The model class for PassageSearch data response.
 class PassageSearch extends entities.PassageSearch {
   const PassageSearch({
     required super.page,
@@ -8,7 +11,10 @@ class PassageSearch extends entities.PassageSearch {
     required super.totalPages,
   });
 
+  /// The factory constructor which creates a new instance of PassageSearch
+  /// from a [json] data.
   factory PassageSearch.fromJson(Map<String, dynamic> json) {
+    // convert data to a correct types
     final jsonResults = (json['results'] as List<dynamic>)
         .map((item) => item as Map<String, dynamic>?)
         .toList();
