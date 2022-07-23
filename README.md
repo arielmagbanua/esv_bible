@@ -1,5 +1,7 @@
 # ESV API Bible for Dart
 
+![Dart CI](https://github.com/arielmagbanua/esv_bible/actions/workflows/ci.yml/badge.svg)
+
 A future based dart package for the [ESV API](https://api.esv.org/) from [Crossway](https://www.crossway.org/)
 which can be used to fetch ESV bible passages.
 
