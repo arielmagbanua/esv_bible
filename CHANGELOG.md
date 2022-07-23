@@ -18,3 +18,8 @@ The initial release which includes getting of text and html passages and passage
 ## 0.1.3
 
 Example fix
+
+
+## 0.1.4
+
+Simplified the example
