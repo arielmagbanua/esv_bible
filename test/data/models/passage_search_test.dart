@@ -6,18 +6,23 @@ import '../../test_data.dart' show samplePassageSearch;
 
 void main() {
   // convert sample data to map
-  final samplePassageSearchMap = json.decode(samplePassageSearch);
+  final samplePassageSearchMap =
+      json.decode(samplePassageSearch) as Map<String, dynamic>;
 
   test('Should be able to instantiate PassageSearch model', () {
+    final jsonResults = (samplePassageSearchMap['results'] as List<dynamic>)
+        .map((item) => item as Map<String, dynamic>?)
+        .toList();
+
     final results = List<Map<String, dynamic>?>.from(
-      samplePassageSearchMap['results'],
+      jsonResults,
     ).toList();
 
     final passageSearch = models.PassageSearch(
-      page: samplePassageSearchMap['page'],
-      totalResults: samplePassageSearchMap['total_results'],
+      page: samplePassageSearchMap['page'] as int,
+      totalResults: samplePassageSearchMap['total_results'] as int,
       results: results,
-      totalPages: samplePassageSearchMap['total_pages'],
+      totalPages: samplePassageSearchMap['total_pages'] as int,
     );
 
     expect(passageSearch.page, 1);

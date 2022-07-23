@@ -109,11 +109,9 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
       customHeaders: headers,
     );
 
-    final responseData = json.decode(response.body);
+    final responseData = json.decode(response.body) as Map<String, dynamic>?;
 
-    if (response.statusCode == 200) {
-      return responseData;
-    }
+    if (response.statusCode == 200) return responseData;
 
     return null;
   }
@@ -130,7 +128,7 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
-    return await _query(
+    return _query(
       endpoint: 'passage/html',
       query: queryPassage,
     );
@@ -148,7 +146,7 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
-    return await _query(
+    return _query(
       endpoint: 'passage/text',
       query: queryPassage,
     );
@@ -166,7 +164,7 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
-    return await _query(
+    return _query(
       endpoint: 'passage/search',
       query: queryPassage,
     );
