@@ -13,3 +13,8 @@ The initial release which includes getting of text and html passages and passage
 
 * Directory restructuring
 * Added example
+
+
+## 0.1.3
+
+Example fix
