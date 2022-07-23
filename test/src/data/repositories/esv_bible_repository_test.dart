@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:esv_bible/data/repositories/esv_bible_repository.dart';
 import 'package:test/test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:esv_bible/data/data_sources/esv_remote_api_data_source.dart';
-import 'package:esv_bible/data/models/passage_html.dart' as models;
-import 'package:esv_bible/data/models/passage_text.dart' as models;
-import 'package:esv_bible/data/models/passage_search.dart' as models;
-import '../../test_data.dart';
+import 'package:esv_bible/src/data/repositories/esv_bible_repository.dart';
+import 'package:esv_bible/src/data/data_sources/esv_remote_api_data_source.dart';
+import 'package:esv_bible/src/data/models/passage_html.dart' as models;
+import 'package:esv_bible/src/data/models/passage_text.dart' as models;
+import 'package:esv_bible/src/data/models/passage_search.dart' as models;
+import '../../../test_data.dart';
 
 class MockEsvRemoteDataSource extends Mock implements EsvRemoteDataSource {}
 

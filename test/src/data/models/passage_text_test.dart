@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:test/test.dart';
-import 'package:esv_bible/data/models/passage_text.dart' as models;
+import 'package:esv_bible/src/data/models/passage_text.dart' as models;
 
-import '../../test_data.dart' show samplePassageText;
+import '../../../test_data.dart' show samplePassageText;
 
 void main() {
   // convert sample data to map

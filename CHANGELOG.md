@@ -7,3 +7,9 @@ The initial release which includes getting of text and html passages and passage
 
 * Updated pub spec description.
 * Renamed use case class files.
+
+
+## 0.1.2
+
+* Directory restructuring
+* Added example
