@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:esv_bible/data/models/passage_html.dart' as models;
 
 import '../../test_data.dart' show samplePassageHTML;
