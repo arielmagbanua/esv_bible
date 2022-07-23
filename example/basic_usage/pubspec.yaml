@@ -1,0 +1,11 @@
+name: basic_usage
+
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+
+dependencies:
+  esv_bible:
+    path: ../../
+
+dev_dependencies:
+  lint: ^1.0.0
