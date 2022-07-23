@@ -1,4 +1,4 @@
-const samplePassageHTML = '''
+const samplePassageHTML = r'''
 {
   "query": "John 11:35",
   "canonical": "John 11:35",
@@ -32,19 +32,19 @@ const samplePassageHTML = '''
     }
   ],
   "passages": [
-    "<h2 class=\\"extra_text\\">John 11:35 <small class=\\"audio extra_text\\">(<a class=\\"mp3link\\" href=\\"https://audio.esv.org/hw/43011035-43011035.mp3\\" title=\\"John 11:35\\" type=\\"audio/mpeg\\">Listen</a>)</small></h2>\\n<p id=\\"p43011035_01-1\\" class=\\"virtual\\"><b class=\\"verse-num\\" id=\\"v43011035-1\\">35 </b>Jesus wept.</p>\\n<p>(<a href=\\"http://www.esv.org\\" class=\\"copyright\\">ESV</a>)</p>"
+    "<h2 class=\"extra_text\">John 11:35 <small class=\"audio extra_text\">(<a class=\"mp3link\" href=\"https://audio.esv.org/hw/43011035-43011035.mp3\" title=\"John 11:35\" type=\"audio/mpeg\">Listen</a>)</small></h2>\n<p id=\"p43011035_01-1\" class=\"virtual\"><b class=\"verse-num\" id=\"v43011035-1\">35 </b>Jesus wept.</p>\n<p>(<a href=\"http://www.esv.org\" class=\"copyright\">ESV</a>)</p>"
   ]
 }
 ''';
 
-const samplePassageSearch = '''
+const samplePassageSearch = r'''
 {
     "page": 1,
     "total_results": 3,
     "results": [
         {
             "reference": "Numbers 11:4",
-            "content": "Now the rabble that was among them had a strong craving. And the people of Israel also wept again and said, \\u201cOh that we had meat to eat!"
+            "content": "Now the rabble that was among them had a strong craving. And the people of Israel also wept again and said, \u201cOh that we had meat to eat!"
         },
         {
             "reference": "Job 30:12",
@@ -59,7 +59,7 @@ const samplePassageSearch = '''
 }
 ''';
 
-const samplePassageText = '''
+const samplePassageText = r'''
 {
   "query": "John 11:35",
   "canonical": "John 11:35",
@@ -93,7 +93,7 @@ const samplePassageText = '''
     }
   ],
   "passages": [
-    "John 11:35\\n\\n  [35] Jesus wept. (ESV)"
+    "John 11:35\n\n  [35] Jesus wept. (ESV)"
   ]
 }
 ''';

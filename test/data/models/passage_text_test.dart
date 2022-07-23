@@ -6,20 +6,36 @@ import '../../test_data.dart' show samplePassageText;
 
 void main() {
   // convert sample data to map
-  final samplePassageTextMap = json.decode(samplePassageText);
+  final samplePassageTextMap =
+      json.decode(samplePassageText) as Map<String, dynamic>;
 
   test('Should be able to instantiate PassageText model', () {
-    final parsed =
-        List<List<dynamic>?>.from(samplePassageTextMap['parsed']).toList();
-    final passageMeta =
-        List<Map<String, dynamic>?>.from(samplePassageTextMap['passage_meta'])
+    final jsonParsed = (samplePassageTextMap['parsed'] as List<dynamic>)
+        .map((item) => item as List<dynamic>?)
+        .toList();
+
+    final jsonPassageMeta =
+        (samplePassageTextMap['passage_meta'] as List<dynamic>)
+            .map((item) => item as Map<String, dynamic>?)
             .toList();
-    final passages =
-        List<String>.from(samplePassageTextMap['passages']).toList();
+
+    final jsonMessages = (samplePassageTextMap['passages'] as List<dynamic>)
+        .map((item) => item as String?)
+        .toList();
+
+    final parsed = List<List<dynamic>?>.from(
+      jsonParsed,
+    ).toList();
+    final passageMeta = List<Map<String, dynamic>?>.from(
+      jsonPassageMeta,
+    ).toList();
+    final passages = List<String>.from(
+      jsonMessages,
+    ).toList();
 
     final passageText = models.PassageText(
-      query: samplePassageTextMap['query'],
-      canonical: samplePassageTextMap['canonical'],
+      query: samplePassageTextMap['query'].toString(),
+      canonical: samplePassageTextMap['canonical'].toString(),
       parsed: parsed,
       passageMeta: passageMeta,
       passages: passages,

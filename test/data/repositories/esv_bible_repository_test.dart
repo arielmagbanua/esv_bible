@@ -19,7 +19,9 @@ void main() {
     final samplePassageHTMLMap = json.decode(samplePassageHTML);
 
     when(() => mockEsvRemoteDataSource.getPassageHtml(query)).thenAnswer(
-      (_) => Future<Map<String, dynamic>?>.value(samplePassageHTMLMap),
+      (_) => Future<Map<String, dynamic>?>.value(
+        samplePassageHTMLMap as Map<String, dynamic>?,
+      ),
     );
 
     final repository = EsvBibleRepository(mockEsvRemoteDataSource);
@@ -41,7 +43,9 @@ void main() {
     final samplePassageTextMap = json.decode(samplePassageText);
 
     when(() => mockEsvRemoteDataSource.getPassageText(query)).thenAnswer(
-          (_) => Future<Map<String, dynamic>?>.value(samplePassageTextMap),
+      (_) => Future<Map<String, dynamic>?>.value(
+        samplePassageTextMap as Map<String, dynamic>?,
+      ),
     );
 
     final repository = EsvBibleRepository(mockEsvRemoteDataSource);
@@ -60,7 +64,9 @@ void main() {
     final samplePassageSearchMap = json.decode(samplePassageSearch);
 
     when(() => mockEsvRemoteDataSource.getPassageSearch(query)).thenAnswer(
-          (_) => Future<Map<String, dynamic>?>.value(samplePassageSearchMap),
+      (_) => Future<Map<String, dynamic>?>.value(
+        samplePassageSearchMap as Map<String, dynamic>?,
+      ),
     );
 
     final repository = EsvBibleRepository(mockEsvRemoteDataSource);
