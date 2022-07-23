@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:test/test.dart';
-import 'package:esv_bible/data/models/passage_search.dart' as models;
+import 'package:esv_bible/src/data/models/passage_search.dart' as models;
 
-import '../../test_data.dart' show samplePassageSearch;
+import '../../../test_data.dart' show samplePassageSearch;
 
 void main() {
   // convert sample data to map
