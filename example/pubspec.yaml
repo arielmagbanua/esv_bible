@@ -5,7 +5,7 @@ environment:
 
 dependencies:
   esv_bible:
-    path: ../../
+    path: ../
 
 dev_dependencies:
   lint: ^1.0.0
