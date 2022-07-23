@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 
+/// PassageSearch
+///
+/// The entity class for PassageSearch data response.
 class PassageSearch extends Equatable {
   final int page;
   final int totalResults;
