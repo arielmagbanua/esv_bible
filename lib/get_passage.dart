@@ -1,9 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'data/data_sources/esv_remote_api_data_source.dart';
 import 'data/repositories/esv_bible_repository.dart';
-import 'domain/use_cases/passage_text.dart';
-import 'domain/use_cases/passage_html.dart';
-import 'domain/use_cases/passage_search.dart';
+import 'domain/use_cases/get_passage_text.dart';
+import 'domain/use_cases/get_passage_html.dart';
+import 'domain/use_cases/get_passage_search.dart';
 
 /// GetPassage
 ///
