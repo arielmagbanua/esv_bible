@@ -24,7 +24,7 @@ This package requires an API key to fetch bible passages. You can secure an API 
 
 Basic passage text query:
 ```dart
-import 'package:esv_bible/get_passage.dart';
+import 'package:esv_bible/esv_bible.dart';
 
 void main () async {
   const apiKey = 'your-api-key';
