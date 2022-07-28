@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:test/test.dart';
 import 'package:mocktail/mocktail.dart';
+
+import 'package:esv_bible/src/domain/entities/passage_search.dart';
+import 'package:esv_bible/src/domain/entities/passage_text.dart';
+import 'package:esv_bible/src/domain/entities/passage_html.dart';
 import 'package:esv_bible/src/data/repositories/esv_bible_repository.dart';
 import 'package:esv_bible/src/data/data_sources/esv_remote_api_data_source.dart';
-import 'package:esv_bible/src/data/models/passage_html.dart' as models;
-import 'package:esv_bible/src/data/models/passage_text.dart' as models;
-import 'package:esv_bible/src/data/models/passage_search.dart' as models;
+
 import '../../../test_data.dart';
 
 class MockEsvRemoteDataSource extends Mock implements EsvRemoteDataSource {}
@@ -28,7 +30,7 @@ void main() {
     final passageHtml = await repository.getPassageHtml(query);
 
     expect(passageHtml, isNotNull);
-    expect(passageHtml, const TypeMatcher<models.PassageHtml>());
+    expect(passageHtml, const TypeMatcher<PassageHtml>());
     expect(passageHtml.query, 'John 11:35');
     expect(passageHtml.canonical, 'John 11:35');
     expect(passageHtml.passages, isNotEmpty);
@@ -52,7 +54,7 @@ void main() {
     final passageText = await repository.getPassageText(query);
 
     expect(passageText, isNotNull);
-    expect(passageText, const TypeMatcher<models.PassageText>());
+    expect(passageText, const TypeMatcher<PassageText>());
     expect(passageText.query, 'John 11:35');
     expect(passageText.canonical, 'John 11:35');
     expect(passageText.passages, isNotEmpty);
@@ -73,7 +75,7 @@ void main() {
     final passageSearch = await repository.getPassageSearch(query);
 
     expect(passageSearch, isNotNull);
-    expect(passageSearch, const TypeMatcher<models.PassageSearch>());
+    expect(passageSearch, const TypeMatcher<PassageSearch>());
     expect(passageSearch.page, 1);
     expect(passageSearch.totalResults, 3);
     expect(passageSearch.results, isNotEmpty);

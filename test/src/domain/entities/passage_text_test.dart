@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:esv_bible/src/domain/entities/passage_text.dart';
 import 'package:test/test.dart';
-import 'package:esv_bible/src/data/models/passage_text.dart' as models;
 
 import '../../../test_data.dart' show samplePassageText;
 
@@ -33,7 +33,7 @@ void main() {
       jsonMessages,
     ).toList();
 
-    final passageText = models.PassageText(
+    final passageText = PassageText(
       query: samplePassageTextMap['query'].toString(),
       canonical: samplePassageTextMap['canonical'].toString(),
       parsed: parsed,
@@ -47,12 +47,20 @@ void main() {
     expect(passageText.passages[0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
   });
 
-  test('Should be able to instantiate PassageText model via factory', () {
-    final passageText = models.PassageText.fromJson(samplePassageTextMap);
+  test(
+      'Should be able to instantiate PassageText model via factory and conversion to json',
+      () {
+    final passageText = PassageText.fromJson(samplePassageTextMap);
+
+    final jsonPassageText = passageText.toJson();
 
     expect(passageText.query, 'John 11:35');
+    expect(jsonPassageText['query'], 'John 11:35');
     expect(passageText.canonical, 'John 11:35');
+    expect(jsonPassageText['canonical'], 'John 11:35');
     expect(passageText.passages, isNotEmpty);
+    expect(jsonPassageText['passages'], isNotEmpty);
     expect(passageText.passages[0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
+    expect(jsonPassageText['passages'][0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
   });
 }
