@@ -23,3 +23,9 @@ Example fix
 ## 0.1.4
 
 Simplified the example
+
+
+## 0.2.0
+
+* Removed models and used the entities instead.
+* Used the `json_serializable` to easily create entities from json map and convert them to json maps.
