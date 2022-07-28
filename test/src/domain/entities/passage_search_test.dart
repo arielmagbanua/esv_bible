@@ -32,12 +32,18 @@ void main() {
     expect(passageSearch.totalPages, 1);
   });
 
-  test('Should be able to instantiate PassageText model via factory', () {
+  test('Should be able to instantiate PassageText model via factory and conversion to json', () {
     final passageSearch = PassageSearch.fromJson(samplePassageSearchMap);
 
+    final jsonPassageSearch = passageSearch.toJson();
+
     expect(passageSearch.page, 1);
+    expect(jsonPassageSearch['page'], 1);
     expect(passageSearch.totalResults, 3);
+    expect(jsonPassageSearch['total_results'], 3);
     expect(passageSearch.results, isNotEmpty);
+    expect(jsonPassageSearch['results'], isNotEmpty);
     expect(passageSearch.totalPages, 1);
+    expect(jsonPassageSearch['total_pages'], 1);
   });
 }

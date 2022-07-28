@@ -53,14 +53,23 @@ void main() {
     );
   });
 
-  test('Should be able to instantiate PassageText model via factory', () {
+  test('Should be able to instantiate PassageText model via factory and conversion to json', () {
     final passageHtml = PassageHtml.fromJson(samplePassageHTMLMap);
 
+    final jsonPassageHtml = passageHtml.toJson();
+
     expect(passageHtml.query, 'John 11:35');
+    expect(jsonPassageHtml['query'], 'John 11:35');
     expect(passageHtml.canonical, 'John 11:35');
+    expect(jsonPassageHtml['canonical'], 'John 11:35');
     expect(passageHtml.passages, isNotEmpty);
+    expect(jsonPassageHtml['passages'], isNotEmpty);
     expect(
       passageHtml.passages[0],
+      '<h2 class="extra_text">John 11:35 <small class="audio extra_text">(<a class="mp3link" href="https://audio.esv.org/hw/43011035-43011035.mp3" title="John 11:35" type="audio/mpeg">Listen</a>)</small></h2>\n<p id="p43011035_01-1" class="virtual"><b class="verse-num" id="v43011035-1">35 </b>Jesus wept.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
+    );
+    expect(
+      jsonPassageHtml['passages'][0],
       '<h2 class="extra_text">John 11:35 <small class="audio extra_text">(<a class="mp3link" href="https://audio.esv.org/hw/43011035-43011035.mp3" title="John 11:35" type="audio/mpeg">Listen</a>)</small></h2>\n<p id="p43011035_01-1" class="virtual"><b class="verse-num" id="v43011035-1">35 </b>Jesus wept.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
     );
   });

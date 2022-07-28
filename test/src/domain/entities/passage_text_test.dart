@@ -47,12 +47,20 @@ void main() {
     expect(passageText.passages[0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
   });
 
-  test('Should be able to instantiate PassageText model via factory', () {
+  test(
+      'Should be able to instantiate PassageText model via factory and conversion to json',
+      () {
     final passageText = PassageText.fromJson(samplePassageTextMap);
 
+    final jsonPassageText = passageText.toJson();
+
     expect(passageText.query, 'John 11:35');
+    expect(jsonPassageText['query'], 'John 11:35');
     expect(passageText.canonical, 'John 11:35');
+    expect(jsonPassageText['canonical'], 'John 11:35');
     expect(passageText.passages, isNotEmpty);
+    expect(jsonPassageText['passages'], isNotEmpty);
     expect(passageText.passages[0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
+    expect(jsonPassageText['passages'][0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
   });
 }
