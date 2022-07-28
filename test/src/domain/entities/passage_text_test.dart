@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:esv_bible/src/domain/entities/passage_text.dart';
 import 'package:test/test.dart';
-import 'package:esv_bible/src/data/models/passage_text.dart' as models;
 
 import '../../../test_data.dart' show samplePassageText;
 
@@ -33,7 +33,7 @@ void main() {
       jsonMessages,
     ).toList();
 
-    final passageText = models.PassageText(
+    final passageText = PassageText(
       query: samplePassageTextMap['query'].toString(),
       canonical: samplePassageTextMap['canonical'].toString(),
       parsed: parsed,
@@ -48,7 +48,7 @@ void main() {
   });
 
   test('Should be able to instantiate PassageText model via factory', () {
-    final passageText = models.PassageText.fromJson(samplePassageTextMap);
+    final passageText = PassageText.fromJson(samplePassageTextMap);
 
     expect(passageText.query, 'John 11:35');
     expect(passageText.canonical, 'John 11:35');

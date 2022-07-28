@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:test/test.dart';
-import 'package:esv_bible/src/data/models/passage_search.dart' as models;
+
+import 'package:esv_bible/src/domain/entities/passage_search.dart';
 
 import '../../../test_data.dart' show samplePassageSearch;
 
@@ -18,7 +19,7 @@ void main() {
       jsonResults,
     ).toList();
 
-    final passageSearch = models.PassageSearch(
+    final passageSearch = PassageSearch(
       page: samplePassageSearchMap['page'] as int,
       totalResults: samplePassageSearchMap['total_results'] as int,
       results: results,
@@ -32,7 +33,7 @@ void main() {
   });
 
   test('Should be able to instantiate PassageText model via factory', () {
-    final passageSearch = models.PassageSearch.fromJson(samplePassageSearchMap);
+    final passageSearch = PassageSearch.fromJson(samplePassageSearchMap);
 
     expect(passageSearch.page, 1);
     expect(passageSearch.totalResults, 3);

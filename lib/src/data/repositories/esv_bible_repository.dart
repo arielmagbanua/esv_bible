@@ -1,8 +1,8 @@
 import '../data_sources/esv_remote_api_data_source.dart';
 import '../../domain/repositories/esv_bible_repository.dart' as contracts;
-import '../models/passage_html.dart';
-import '../models/passage_text.dart';
-import '../models/passage_search.dart';
+import '../../domain/entities/passage_html.dart';
+import '../../domain/entities/passage_text.dart';
+import '../../domain/entities/passage_search.dart';
 
 /// EsvBibleRepository
 ///
