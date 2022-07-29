@@ -29,3 +29,11 @@ Simplified the example
 
 * Removed models and used the entities instead.
 * Used the `json_serializable` to easily create entities from json map and convert them to json maps.
+
+
+## 0.3.0
+
+* Introduced new class for fetching passage data from ESV API.
+* Removed use case classes.
+* Updated the example.
+* Updated the dependencies.
