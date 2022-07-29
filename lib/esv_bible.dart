@@ -1,3 +1,3 @@
 library esv_bible;
 
-export 'src/get_passage.dart';
+export 'src/passage.dart';
