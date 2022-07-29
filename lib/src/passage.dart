@@ -13,8 +13,8 @@ class Passage {
   final String apiKey;
   final EsvBibleRepository esvBibleRepository;
 
-  Passage({
-    required this.apiKey,
+  Passage(
+    this.apiKey, {
     EsvBibleRepository? esvBibleRepository,
   }) : esvBibleRepository = esvBibleRepository ??
             EsvBibleRepository(EsvRemoteDataSourceImplementation(
@@ -40,7 +40,8 @@ class Passage {
   /// The [queryPassage] is the requested passage.
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
-  Future<PassageHtml> html(String queryPassage, {
+  Future<PassageHtml> html(
+    String queryPassage, {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) {
@@ -52,7 +53,8 @@ class Passage {
   /// The [queryPassage] is the requested passage.
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
-  Future<PassageSearch> search(String queryPassage, {
+  Future<PassageSearch> search(
+    String queryPassage, {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) {
