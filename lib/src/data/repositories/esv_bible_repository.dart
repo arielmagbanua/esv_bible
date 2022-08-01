@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import '../data_sources/esv_remote_api_data_source.dart';
 import '../../domain/repositories/esv_bible_repository.dart' as contracts;
+import '../../domain/entities/passage_audio.dart';
 import '../../domain/entities/passage_html.dart';
 import '../../domain/entities/passage_text.dart';
 import '../../domain/entities/passage_search.dart';
@@ -77,5 +80,40 @@ class EsvBibleRepository implements contracts.EsvBibleRepository {
     return data != null
         ? PassageText.fromJson(data)
         : PassageText.fromJson(const {});
+  }
+
+  /// Get passage audio
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [filePath] is the file path where to save the mpe audio.
+  @override
+  Future<PassageAudio> getPassageAudio(
+    String queryPassage, {
+    String? filePath,
+  }) async {
+    final audioResponse =
+        await esvRemoteDataSource.getPassageAudio(queryPassage);
+
+    final tempDirectory = Directory.systemTemp;
+
+    String audioPath = '';
+
+    if (await tempDirectory.exists()) {
+      // temp directory exists
+      audioPath = Platform.isWindows
+          ? tempDirectory.path + r'\passageAudio.mp3'
+          : tempDirectory.path + '/passageAudio.mp3';
+    } else {
+      // use the current directory if temp directory does not exists
+      audioPath = Platform.isWindows
+          ? Directory.current.path + r'\passageAudio.mp3'
+          : Directory.current.path + '/passageAudio.mp3';
+    }
+
+    final file = await File(audioPath).writeAsBytes(
+      audioResponse.bodyBytes,
+    );
+
+    return PassageAudio(query: queryPassage, audio: file);
   }
 }
