@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 
 import 'data/data_sources/esv_remote_api_data_source.dart';
 import 'data/repositories/esv_bible_repository.dart';
+import 'domain/entities/passage_audio.dart';
 import 'domain/entities/passage_html.dart';
 import 'domain/entities/passage_search.dart';
 import 'domain/entities/passage_text.dart';
@@ -59,5 +60,12 @@ class Passage {
     Map<String, dynamic>? headers,
   }) {
     return esvBibleRepository.getPassageSearch(queryPassage);
+  }
+
+  /// Retrieves passage audio file from ESV API.
+  ///
+  /// The [queryPassage] is the requested passage.
+  Future<PassageAudio> audio(String queryPassage) {
+    return esvBibleRepository.getPassageAudio(queryPassage);
   }
 }
