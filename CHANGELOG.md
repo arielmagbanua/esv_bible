@@ -37,3 +37,9 @@ Simplified the example
 * Removed use case classes.
 * Updated the example.
 * Updated the dependencies.
+
+
+## 1.0.0
+
+* Added downloading of audio passage.
+* Updated example and tests.

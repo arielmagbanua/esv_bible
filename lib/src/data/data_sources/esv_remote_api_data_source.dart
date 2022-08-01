@@ -46,6 +46,13 @@ abstract class EsvRemoteDataSource extends RestfulDataSource {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   });
+
+  /// Get passage audio
+  ///
+  /// https://api.esv.org/docs/passage-audio/
+  ///
+  /// The [queryPassage] is the requested passage.
+  Future<http.Response> getPassageAudio(String queryPassage);
 }
 
 /// RemoteAPIDataSource
@@ -88,6 +95,28 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     Map<String, String>? params,
     Map<String, String>? headers,
   }) async {
+    final response = await _response(
+      endpoint: endpoint,
+      method: 'GET',
+      query: query,
+      params: params,
+      headers: headers,
+    );
+
+    final responseData = json.decode(response.body) as Map<String, dynamic>?;
+
+    if (response.statusCode == 200) return responseData;
+
+    return null;
+  }
+
+  Future<http.Response> _response({
+    required String endpoint,
+    required String method,
+    String? query,
+    Map<String, String>? params,
+    Map<String, String>? headers,
+  }) {
     params = params ?? {};
     headers = headers ?? {};
 
@@ -106,17 +135,11 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
 
     String url = '$baseEndpoint/$apiVersion/$endpoint';
 
-    final response = await sendRequest(
-      method: 'GET',
+    return sendRequest(
+      method: method,
       url: '$url?$queryString',
       customHeaders: headers,
     );
-
-    final responseData = json.decode(response.body) as Map<String, dynamic>?;
-
-    if (response.statusCode == 200) return responseData;
-
-    return null;
   }
 
   /// Get passage html
@@ -170,6 +193,20 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     return _query(
       endpoint: 'passage/search',
       query: queryPassage,
+    );
+  }
+
+  /// Get passage audio
+  ///
+  /// https://api.esv.org/docs/passage-audio/
+  ///
+  /// The [queryPassage] is the requested passage.
+  @override
+  Future<http.Response> getPassageAudio(String queryPassage) {
+    return _response(
+      query: queryPassage,
+      endpoint: 'passage/audio',
+      method: 'GET',
     );
   }
 }
