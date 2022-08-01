@@ -47,6 +47,11 @@ abstract class EsvRemoteDataSource extends RestfulDataSource {
     Map<String, dynamic>? headers,
   });
 
+  /// Get passage audio
+  ///
+  /// https://api.esv.org/docs/passage-audio/
+  ///
+  /// The [queryPassage] is the requested passage.
   Future<http.Response> getPassageAudio(String queryPassage);
 }
 
