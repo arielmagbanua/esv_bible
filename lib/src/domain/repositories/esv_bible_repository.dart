@@ -1,3 +1,4 @@
+import '../entities/passage_audio.dart';
 import '../entities/passage_html.dart';
 import '../entities/passage_text.dart';
 import '../entities/passage_search.dart';
@@ -38,5 +39,16 @@ abstract class EsvBibleRepository {
     String queryPassage, {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
+  });
+
+  /// Get passage audio
+  ///
+  /// The [queryPassage] is the requested passage.
+  /// The [params] is a key value map as url params.
+  /// The [headers] is a map that contains the headers of the request.
+  /// The [filePath] is the file path where to save the mpe audio.
+  Future<PassageAudio> getPassageAudio(
+    String queryPassage, {
+    String? filePath,
   });
 }
