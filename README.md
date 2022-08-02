@@ -11,14 +11,15 @@ This package requires an API key to fetch bible passages. You can secure an API 
 * Get [passage text](https://api.esv.org/docs/passage-text/) from ESV Bible API.
 * Get [passage html](https://api.esv.org/docs/passage-html/) from ESV Bible API.
 * [Search a passage](https://api.esv.org/docs/passage-search/) from ESV Bible API.
-* [Download a mp3 audio](https://api.esv.org/docs/passage-audio/) of a bible passage. (in development)
+* [Download a mp3 audio](https://api.esv.org/docs/passage-audio/) of a bible passage.
 
 ## Getting started
 
 * Secure your API key at the [ESV API website](https://api.esv.org/).
 * Import the package.
-* To fetch a passage you can use the factory class `GetPassage` to create the passage use case (`PassageHtml`, `PassageText`, `PassageSearch`).
-* The use case classes are callable, so calling them will execute an API request and automatically parse and then converts the data to an object.
+* To fetch a passage, create an instance of the Passage class and provide the ESV API key in the constructor.
+* Call the `text` method to retrieve the `PassageText` object, call the`html` method to retrieve the `PassageHtml` object,
+call the `search` method to retrieve the `PassageSearch` object, and call the `audio` method to retrieve the `PassageAudio` object.
 
 ## Usage
 
@@ -29,8 +30,10 @@ import 'package:esv_bible/esv_bible.dart';
 void main () async {
   const apiKey = 'your-api-key';
 
-  final passage = GetPassage.text(apiKey);
-  final passageText = await passage('John 3:16');
+  final passage = Passage(apiKey);
+
+  // PassageText
+  final passageText = await passage.text('John 3:16');
   print(passageText.passages[0]);
 }
 ```
