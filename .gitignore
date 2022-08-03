@@ -32,3 +32,5 @@ build/
 .env
 
 .vscode
+
+myFile.mp3

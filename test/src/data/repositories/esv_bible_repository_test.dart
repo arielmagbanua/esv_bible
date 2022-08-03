@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 import 'package:test/test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:esv_bible/src/domain/entities/passage_search.dart';
 import 'package:esv_bible/src/domain/entities/passage_text.dart';
@@ -12,8 +15,11 @@ import '../../../test_data.dart';
 
 class MockEsvRemoteDataSource extends Mock implements EsvRemoteDataSource {}
 
+class MockHttpResponse extends Mock implements http.Response {}
+
 void main() {
   final mockEsvRemoteDataSource = MockEsvRemoteDataSource();
+  final mockHttpResponse = MockHttpResponse();
   const query = 'John 11:35';
 
   test('test getPassageHtml method', () async {
@@ -80,5 +86,44 @@ void main() {
     expect(passageSearch.totalResults, 3);
     expect(passageSearch.results, isNotEmpty);
     expect(passageSearch.totalPages, 1);
+  });
+
+  test('test getPassageAudio method', () async {
+    when(() => mockHttpResponse.bodyBytes).thenAnswer((_) => Uint8List(2));
+
+    when(() => mockEsvRemoteDataSource.getPassageAudio(query)).thenAnswer(
+      (_) => Future<http.Response>.value(mockHttpResponse),
+    );
+
+    String audioPath = '';
+    final tempDirectory = Directory.systemTemp;
+
+    if (await tempDirectory.exists()) {
+      // temp directory exists
+      audioPath = Platform.isWindows
+          ? tempDirectory.path + r'\passageAudio.mp3'
+          : tempDirectory.path + '/passageAudio.mp3';
+    } else {
+      // use the current directory if temp directory does not exists
+      audioPath = Platform.isWindows
+          ? Directory.current.path + r'\passageAudio.mp3'
+          : Directory.current.path + '/passageAudio.mp3';
+    }
+
+    // custom file path
+    final customFilePath = Platform.isWindows
+        ? Directory.current.path + r'\myFile.mp3'
+        : Directory.current.path + '/myFile.mp3';
+
+    final repository = EsvBibleRepository(mockEsvRemoteDataSource);
+    final passageAudio1 = await repository.getPassageAudio(query);
+    final passageAudio2 = await repository.getPassageAudio(
+      query,
+      filePath: customFilePath,
+    );
+
+    expect(passageAudio1.query, query);
+    expect(passageAudio1.audio.path, audioPath);
+    expect(passageAudio2.audio.path, customFilePath);
   });
 }
