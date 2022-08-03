@@ -110,7 +110,7 @@ class EsvBibleRepository implements contracts.EsvBibleRepository {
           : Directory.current.path + '/passageAudio.mp3';
     }
 
-    final file = await File(audioPath).writeAsBytes(
+    final file = await File(filePath ?? audioPath).writeAsBytes(
       audioResponse.bodyBytes,
     );
 

@@ -43,3 +43,11 @@ Simplified the example
 
 * Added downloading of audio passage.
 * Updated example and tests.
+
+
+## 1.0.1
+
+* Fix the issue where the custom file path is not always being used.
+* Corrected the example usage.
+* Added more tests.
+
