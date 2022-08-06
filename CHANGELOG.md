@@ -51,3 +51,8 @@ Simplified the example
 * Corrected the example usage.
 * Added more tests.
 
+
+## 1.0.2
+
+* Cleaned up typos and renamed some dart files.
+

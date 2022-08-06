@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../data_sources/esv_remote_api_data_source.dart';
+import '../data_sources/esv_remote_data_source.dart';
 import '../../domain/repositories/esv_bible_repository.dart' as contracts;
 import '../../domain/entities/passage_audio.dart';
 import '../../domain/entities/passage_html.dart';
