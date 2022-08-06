@@ -9,7 +9,7 @@ import 'package:esv_bible/src/domain/entities/passage_search.dart';
 import 'package:esv_bible/src/domain/entities/passage_text.dart';
 import 'package:esv_bible/src/domain/entities/passage_html.dart';
 import 'package:esv_bible/src/data/repositories/esv_bible_repository.dart';
-import 'package:esv_bible/src/data/data_sources/esv_remote_api_data_source.dart';
+import 'package:esv_bible/src/data/data_sources/esv_remote_data_source.dart';
 
 import '../../../test_data.dart';
 
