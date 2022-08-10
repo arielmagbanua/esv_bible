@@ -131,15 +131,13 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     // set the content type header
     headers['Content-Type'] = 'application/json';
 
-    String queryString =
-        params.isNotEmpty ? Uri(queryParameters: params).query : '';
-
     String url = '$baseEndpoint/$apiVersion/$endpoint';
 
     return sendRequest(
       method: method,
-      url: '$url?$queryString',
-      customHeaders: headers,
+      url: url,
+      params: params,
+      headers: headers,
     );
   }
 
