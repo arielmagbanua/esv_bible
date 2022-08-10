@@ -2,7 +2,7 @@ import 'package:test/test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:esv_bible/src/data/data_sources/esv_remote_data_source.dart';
+import 'package:esv_bible/src/data/data_sources/esv_remote_data_source_implementation.dart';
 
 import '../../../test_data.dart';
 
