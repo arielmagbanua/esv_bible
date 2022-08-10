@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-import 'data/data_sources/esv_remote_data_source.dart';
+import 'data/data_sources/esv_remote_data_source_implementation.dart';
 import 'data/repositories/esv_bible_repository.dart';
 import 'domain/entities/passage_audio.dart';
 import 'domain/entities/passage_html.dart';
@@ -18,10 +18,12 @@ class Passage {
     this.apiKey, {
     EsvBibleRepository? esvBibleRepository,
   }) : esvBibleRepository = esvBibleRepository ??
-            EsvBibleRepository(EsvRemoteDataSourceImplementation(
-              httpClient: http.Client(),
-              apiKey: apiKey,
-            ));
+            EsvBibleRepository(
+              EsvRemoteDataSourceImplementation(
+                httpClient: http.Client(),
+                apiKey: apiKey,
+              ),
+            );
 
   /// Retrieves a passage text data from ESV API.
   ///

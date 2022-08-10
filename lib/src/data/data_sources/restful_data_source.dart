@@ -19,42 +19,51 @@ abstract class RestfulDataSource {
   ///
   /// The [method] is the RESTful method or verb.
   /// The [url] is the endpoint of the request.
-  /// The [customHeaders] are the custom or additional headers needed.
+  /// The [params] is a key value map for the url params of the request.
+  /// The [headers] are the custom or additional headers needed.
   /// The [body] is the body or payload of the request.
   ///     It could be a string or map.
   Future<http.Response> sendRequest({
     required String method,
     required String url,
-    Map<String, String>? customHeaders,
+    Map<String, String>? params,
+    Map<String, String>? headers,
     Object? body,
   }) {
-    final Map<String, String> headers = {};
-    headers.addAll(defaultHeaders);
+    final Map<String, String> requestHeaders = {};
+    requestHeaders.addAll(defaultHeaders);
 
-    if (customHeaders != null) {
+    if (headers != null) {
       // add the additional or custom headers
-      headers.addAll(customHeaders);
+      requestHeaders.addAll(headers);
     }
+
+    // create the query string
+    String queryString = (params != null && params.isNotEmpty)
+        ? Uri(queryParameters: params).query
+        : '';
+
+    url = '$url?$queryString';
 
     switch (method.toUpperCase()) {
       case 'POST':
         return httpClient.post(
           Uri.parse(url),
-          headers: headers,
+          headers: requestHeaders,
           body: body,
         );
 
       case 'PUT':
         return httpClient.put(
           Uri.parse(url),
-          headers: headers,
+          headers: requestHeaders,
           body: body,
         );
 
       default:
         return httpClient.get(
           Uri.parse(url),
-          headers: headers,
+          headers: requestHeaders,
         );
     }
   }

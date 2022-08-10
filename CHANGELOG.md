@@ -56,3 +56,8 @@ Simplified the example
 
 * Cleaned up typos and renamed some dart files.
 
+
+## 1.1.0
+
+* Exported additional classes.
+* Refactored the remote data source.
