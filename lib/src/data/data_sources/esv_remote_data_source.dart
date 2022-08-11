@@ -12,6 +12,9 @@ abstract class EsvRemoteDataSource extends RestfulDataSource {
   /// The api version
   get apiVersion;
 
+  /// Constructor
+  ///
+  /// The [httpClient] is the instance of http client for executing http requests.
   const EsvRemoteDataSource({required super.httpClient});
 
   /// Get passage html

@@ -8,6 +8,7 @@ part 'passage_text.g.dart';
 /// The entity class for PassageText data response.
 @JsonSerializable()
 class PassageText extends Equatable {
+  /// The query term used.
   final String query;
 
   final String canonical;
@@ -34,6 +35,7 @@ class PassageText extends Equatable {
   /// Converts this object to a json map object
   Map<String, dynamic> toJson() => _$PassageTextToJson(this);
 
+  /// Retrieves all properties of this class.
   @override
   List<Object?> get props => [
         query,

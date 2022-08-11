@@ -61,6 +61,7 @@ void main() {
     expect(passageText.passages, isNotEmpty);
     expect(jsonPassageText['passages'], isNotEmpty);
     expect(passageText.passages[0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
-    expect(jsonPassageText['passages'][0], 'John 11:35\n\n  [35] Jesus wept. (ESV)');
+    expect(jsonPassageText['passages'][0],
+        'John 11:35\n\n  [35] Jesus wept. (ESV)');
   });
 }

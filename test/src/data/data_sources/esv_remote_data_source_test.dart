@@ -10,7 +10,7 @@ class MockHttpClient extends Mock implements http.Client {}
 
 class MockResponse extends Mock implements http.Response {}
 
-void main () {
+void main() {
   late MockHttpClient mockedHttpClient;
   late MockResponse mockResponse;
 
@@ -32,7 +32,7 @@ void main () {
     when(() => mockResponse.statusCode).thenReturn(200);
     when(() => mockResponse.body).thenReturn(samplePassageText);
     when(() => mockedHttpClient.get(correctUri, headers: headers)).thenAnswer(
-          (_) => Future<http.Response>.value(mockResponse),
+      (_) => Future<http.Response>.value(mockResponse),
     );
 
     final remoteDataSource = EsvRemoteDataSourceImplementation(
@@ -65,7 +65,7 @@ void main () {
     when(() => mockResponse.statusCode).thenReturn(200);
     when(() => mockResponse.body).thenReturn(samplePassageHTML);
     when(() => mockedHttpClient.get(correctUri, headers: headers)).thenAnswer(
-          (_) => Future<http.Response>.value(mockResponse),
+      (_) => Future<http.Response>.value(mockResponse),
     );
 
     final remoteDataSource = EsvRemoteDataSourceImplementation(
@@ -100,7 +100,7 @@ void main () {
     when(() => mockResponse.statusCode).thenReturn(200);
     when(() => mockResponse.body).thenReturn(samplePassageSearch);
     when(() => mockedHttpClient.get(correctUri, headers: headers)).thenAnswer(
-          (_) => Future<http.Response>.value(mockResponse),
+      (_) => Future<http.Response>.value(mockResponse),
     );
 
     final remoteDataSource = EsvRemoteDataSourceImplementation(

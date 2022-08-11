@@ -61,3 +61,10 @@ Simplified the example
 
 * Exported additional classes.
 * Refactored the remote data source.
+
+
+## 1.1.1
+
+* Fixed the formatting of several classes.
+* Added more doc strings.
+* Simplified the exporting of classes.

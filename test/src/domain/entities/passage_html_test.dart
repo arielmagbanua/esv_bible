@@ -53,7 +53,9 @@ void main() {
     );
   });
 
-  test('Should be able to instantiate PassageText model via factory and conversion to json', () {
+  test(
+      'Should be able to instantiate PassageText model via factory and conversion to json',
+      () {
     final passageHtml = PassageHtml.fromJson(samplePassageHTMLMap);
 
     final jsonPassageHtml = passageHtml.toJson();

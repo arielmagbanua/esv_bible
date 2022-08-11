@@ -64,6 +64,13 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     return null;
   }
 
+  /// Retrieves a raw response from API server.
+  ///
+  /// The [endpoint] is the endpoint of the request.
+  /// The [method] is the RESTful method or verb.
+  /// The [query] is the query or search term of ESV API.
+  /// The [params] is the key value map of url parameters.
+  /// The [headers] is the key value map of all the headers of the request.
   Future<http.Response> _response({
     required String endpoint,
     required String method,
@@ -102,10 +109,10 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageHtml(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return _query(
       endpoint: 'passage/html',
       query: queryPassage,
@@ -120,10 +127,10 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageText(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return _query(
       endpoint: 'passage/text',
       query: queryPassage,
@@ -138,10 +145,10 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageSearch(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return _query(
       endpoint: 'passage/search',
       query: queryPassage,

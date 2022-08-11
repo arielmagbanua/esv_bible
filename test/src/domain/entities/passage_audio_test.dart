@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:esv_bible/src/domain/entities/passage_audio.dart';
 import 'package:test/test.dart';
 
-void main () {
+void main() {
   test('Should be able to instantiate with audio file', () async {
     // use the current directory if temp directory does not exists
     final audioPath = Platform.isWindows
