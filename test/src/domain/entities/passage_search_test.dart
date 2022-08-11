@@ -32,7 +32,9 @@ void main() {
     expect(passageSearch.totalPages, 1);
   });
 
-  test('Should be able to instantiate PassageText model via factory and conversion to json', () {
+  test(
+      'Should be able to instantiate PassageText model via factory and conversion to json',
+      () {
     final passageSearch = PassageSearch.fromJson(samplePassageSearchMap);
 
     final jsonPassageSearch = passageSearch.toJson();

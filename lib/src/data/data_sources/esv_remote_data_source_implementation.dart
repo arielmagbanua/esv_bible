@@ -102,10 +102,10 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageHtml(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return _query(
       endpoint: 'passage/html',
       query: queryPassage,
@@ -120,10 +120,10 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageText(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return _query(
       endpoint: 'passage/text',
       query: queryPassage,
@@ -138,10 +138,10 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
   /// The [params] is a key value map as url params.
   /// The [headers] is a map that contains the headers of the request.
   Future<Map<String, dynamic>?> getPassageSearch(
-      String queryPassage, {
-        Map<String, dynamic>? params,
-        Map<String, dynamic>? headers,
-      }) async {
+    String queryPassage, {
+    Map<String, dynamic>? params,
+    Map<String, dynamic>? headers,
+  }) async {
     return _query(
       endpoint: 'passage/search',
       query: queryPassage,
