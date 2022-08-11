@@ -8,6 +8,7 @@ part 'passage_html.g.dart';
 /// The entity class for PassageHtml data response.
 @JsonSerializable()
 class PassageHtml extends Equatable {
+  /// The query term used.
   final String query;
 
   final String canonical;
@@ -34,6 +35,7 @@ class PassageHtml extends Equatable {
   /// Converts this object to a json map object
   Map<String, dynamic> toJson() => _$PassageHtmlToJson(this);
 
+  /// Retrieves all properties of this class.
   @override
   List<Object?> get props => [
         query,

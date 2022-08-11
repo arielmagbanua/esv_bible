@@ -12,8 +12,13 @@ import '../../domain/entities/passage_search.dart';
 /// It is responsible for abstracting the underlying implementation
 /// of getting bible passages from ESV API.
 class EsvBibleRepository implements contracts.EsvBibleRepository {
+  /// The ESV data source instance which enables this class to pull data from ESV API server.
   final EsvRemoteDataSource esvRemoteDataSource;
 
+  /// Constructor
+  ///
+  /// The [esvRemoteDataSource] is the ESV data source instance which enables
+  /// this class to pull data from ESV API server.
   EsvBibleRepository(this.esvRemoteDataSource);
 
   /// Get passage html

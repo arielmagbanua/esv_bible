@@ -64,6 +64,13 @@ class EsvRemoteDataSourceImplementation extends EsvRemoteDataSource {
     return null;
   }
 
+  /// Retrieves a raw response from API server.
+  ///
+  /// The [endpoint] is the endpoint of the request.
+  /// The [method] is the RESTful method or verb.
+  /// The [query] is the query or search term of ESV API.
+  /// The [params] is the key value map of url parameters.
+  /// The [headers] is the key value map of all the headers of the request.
   Future<http.Response> _response({
     required String endpoint,
     required String method,
