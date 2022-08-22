@@ -12,7 +12,10 @@ import 'domain/entities/passage_text.dart';
 ///
 /// The class for retrieving passage data from ESV API.
 class Passage {
+  /// The api key
   final String apiKey;
+
+  /// The ESV bible repository instance
   final contracts.EsvBibleRepository esvBibleRepository;
 
   Passage(
