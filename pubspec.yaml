@@ -1,6 +1,6 @@
 name: esv_bible
 description: A future-based dart package for the ESV API from Crossway which can be used to fetch ESV bible passages.
-version: 1.1.1
+version: 1.1.2
 homepage: https://github.com/arielmagbanua/esv_bible
 
 environment:
@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   http: ^0.13.4
-  equatable: ^2.0.3
+  equatable: ^2.0.5
   json_annotation: ^4.6.0
 
 dev_dependencies:
