@@ -68,3 +68,10 @@ Simplified the example
 * Fixed the formatting of several classes.
 * Added more doc strings.
 * Simplified the exporting of classes.
+
+
+## 1.1.2
+
+* Updated the repository usages in Passage class.
+* Added more doc strings.
+* Updated the CI steps.
