@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:path/path.dart' show join;
-import 'package:path_provider/path_provider.dart' show getTemporaryDirectory;
 
 import '../data_sources/esv_remote_data_source.dart';
 import '../../domain/repositories/esv_bible_repository.dart' as contracts;
@@ -101,8 +100,13 @@ class EsvBibleRepository implements contracts.EsvBibleRepository {
     final audioResponse =
         await esvRemoteDataSource.getPassageAudio(queryPassage);
 
-    final tempPath = await getTemporaryDirectory();
-    final audioPath = join(tempPath.path, 'passageAudio.mp3');
+    final tempDirectory = Directory.systemTemp;
+
+    // get the temp directory path if it exists, if not then use the current directory
+    String fileDirectoryPath = await tempDirectory.exists()
+        ? tempDirectory.path
+        : Directory.current.path;
+    String audioPath = join(fileDirectoryPath, 'passageAudio.mp3');
 
     final file = await File(filePath ?? audioPath).writeAsBytes(
       audioResponse.bodyBytes,
