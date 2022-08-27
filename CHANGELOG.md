@@ -75,3 +75,8 @@ Simplified the example
 * Updated the repository usages in Passage class.
 * Added more doc strings.
 * Updated the CI steps.
+
+
+## 1.1.3
+
+* Improved the resolving of directory path for passage audio.
