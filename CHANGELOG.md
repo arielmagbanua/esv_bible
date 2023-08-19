@@ -81,3 +81,8 @@ Simplified the example
 
 * Improved the resolving of directory path for passage audio.
 
+
+## 1.1.4
+
+* Improved the resolving of directory path for passage audio.
+
