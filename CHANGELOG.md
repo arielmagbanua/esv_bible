@@ -84,9 +84,4 @@ Simplified the example
 
 ## 1.1.4
 
-* Improved the resolving of directory path for passage audio.
-
-
-## 1.1.5
-
 * Updated the dependency packages and dart SDK.
